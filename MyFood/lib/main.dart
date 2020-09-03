@@ -15,26 +15,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFA4E5B5),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'My Food'),
-    );
-  }
-}
-
-class FridgeIcon extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Fridge Icon Button'),
-      ),
-      body: Center(
-        child: FlatButton.icon(
-          color: Colors.orange,
-          icon: Icon(Icons.add_a_photo),
-          label: Text('Go to Fridge'),
-          onPressed: () {},
-        ),
-      ),
+      home: MyHomePage(title: 'MyFood'),
     );
   }
 }
