@@ -1,6 +1,22 @@
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+
+class LoginScreen extends StatefulWidget {
+  LoginScreen({Key key}) :
+  super(key: key);
+
+  @override  
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+
+class _LoginScreenState extends State<LoginScreen> {
+
+  final nameTextController = TextEditingController();
+  final emailTextController = TextEditingController();
+  final passwordTextController = TextEditingController();
+  final confirmPasswordTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +40,7 @@ class LoginScreen extends StatelessWidget {
                   bottom: 20.0,
                 ),
                 child: TextFormField(
+                    controller: nameTextController,
                     textAlign: TextAlign.start,
                     style: TextStyle(fontSize: 16.0, color: Colors.black),
                     decoration: InputDecoration(
@@ -45,8 +62,9 @@ class LoginScreen extends StatelessWidget {
                 width: 300.0,
                 height: 40.0,
                 child: TextFormField(
-                    textAlign: TextAlign.start,
-                    style: TextStyle(fontSize: 16.0, color: Colors.black),
+                  controller: emailTextController,
+                  textAlign: TextAlign.start,
+                  style: TextStyle(fontSize: 16.0, color: Colors.black),
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(5),
                       fillColor: Colors.white,
@@ -69,6 +87,7 @@ class LoginScreen extends StatelessWidget {
                   bottom: 20.0,
                 ),
                 child: TextFormField(
+                    controller: passwordTextController,
                     textAlign: TextAlign.start,
                     style: TextStyle(fontSize: 16.0, color: Colors.black),
                     decoration: InputDecoration(
@@ -93,6 +112,7 @@ class LoginScreen extends StatelessWidget {
                   bottom: 20.0,
                 ),
                 child: TextFormField(
+                    controller: confirmPasswordTextController,
                     textAlign: TextAlign.start,
                     style: TextStyle(fontSize: 16.0, color: Colors.black),
                     decoration: InputDecoration(
@@ -118,7 +138,10 @@ class LoginScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5.0),
                 child: RaisedButton(
                     onPressed: () {
-                      print("You have logged in!");
+                      print("Name: ${nameTextController.text}");
+                      print("Email: ${emailTextController.text}");
+                      print("Password: ${passwordTextController.text}");
+                      print("Confrim Password: ${confirmPasswordTextController.text}");
                     },
                     color: Colors.orange[700],
                     child: Center(
