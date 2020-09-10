@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 
-class LoginScreen extends StatefulWidget {
-  LoginScreen({Key key}) :
+class RegisterScreen extends StatefulWidget {
+  RegisterScreen({Key key}) :
   super(key: key);
 
   @override  
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegisterScreenState createState() => _RegisterScreenState();
 }
 
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
 
   final nameTextController = TextEditingController();
   final emailTextController = TextEditingController();
@@ -130,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             BorderSide(width: 2, color: Colors.orange[700]),
                       ),
                     ))),
-            SizedBox(height: 45.0),
+            SizedBox(height: 25.0),
             Container(
               height: 30.0,
               width: 130,
@@ -138,15 +138,35 @@ class _LoginScreenState extends State<LoginScreen> {
                 borderRadius: BorderRadius.circular(5.0),
                 child: RaisedButton(
                     onPressed: () {
-                      print("Name: ${nameTextController.text}");
-                      print("Email: ${emailTextController.text}");
-                      print("Password: ${passwordTextController.text}");
-                      print("Confrim Password: ${confirmPasswordTextController.text}");
+                      //Validate code with backend to create user
+                      //If validated, create user on backend and navigate to main menu
                     },
                     color: Colors.orange[700],
                     child: Center(
                       child: Text(
                         "Sign Up",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )),
+              ),
+            ),
+            SizedBox(height: 25),
+            Container(
+              height: 30.0,
+              width: 130,
+              child: Material(
+                borderRadius: BorderRadius.circular(5.0),
+                child: RaisedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    color: Colors.orange[700],
+                    child: Center(
+                      child: Text(
+                        "Cancel",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,

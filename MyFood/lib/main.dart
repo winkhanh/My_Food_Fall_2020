@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import './view/register.dart';
+import './view/login.dart';
 
 void main() {
-  runApp(new MaterialApp(
-    home: LoginScreen(),
-  ));
+  runApp(MyFood());
+}
+
+class MyFood extends StatelessWidget {
+  @override 
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: LoginScreen(),
+    );
+  }
 }
 
