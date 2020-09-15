@@ -1,17 +1,16 @@
-import 'dart:ui';
-import './view/Login.dart';
+=======
 import 'package:flutter/material.dart';
+import './view/login.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MyFood());
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
+class MyFood extends StatelessWidget {
+  @override 
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyLogin(title: 'MyAppLogin'),
+      home: LoginScreen(),
     );
   }
 }
