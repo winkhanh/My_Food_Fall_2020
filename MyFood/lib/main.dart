@@ -1,6 +1,5 @@
-=======
+import './view/Login.dart';
 import 'package:flutter/material.dart';
-import './view/login.dart';
 
 void main() {
   runApp(MyFood());

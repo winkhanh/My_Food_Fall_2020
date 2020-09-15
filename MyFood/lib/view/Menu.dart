@@ -18,7 +18,7 @@ class MenuState extends State<Menu> {
           onPressed: () {
             Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MyLogin())
+                MaterialPageRoute(builder: (context) => LoginScreen())
             );
           } ,
         ),
