@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './view/login.dart';
 import './view/MainPage.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyFood extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFA4E5B5),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MainPage(),
+      home: LoginScreen(),
     );
   }
 }
