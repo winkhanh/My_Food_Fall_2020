@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import './FridgePage.dart';
 
 class MainPage extends StatefulWidget {
-  MainPage({Key key, this.title}) : super(key: key);
-  final String title;
+  MainPage({Key key}) : super(key: key);
 
   @override
   _MainPageState createState() => _MainPageState();
@@ -18,7 +18,7 @@ class _MainPageState extends State<MainPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
-                icon: Image.asset('assets/user.png'),
+                icon: Image.asset('assets/images/user.png'),
                 iconSize: 200,
                 onPressed: () {},
               )
@@ -28,22 +28,25 @@ class _MainPageState extends State<MainPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
-                icon: Image.asset('assets/menu.png'),
+                icon: Image.asset('assets/images/menu.png'),
                 iconSize: 80,
                 onPressed: () {},
               ),
               IconButton(
-                icon: Image.asset('assets/fridge.png'),
+                icon: Image.asset('assets/images/fridge.png'),
+                iconSize: 80,
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => FridgePage()));
+                },
+              ),
+              IconButton(
+                icon: Image.asset('assets/images/shopping_cart.png'),
                 iconSize: 80,
                 onPressed: () {},
               ),
               IconButton(
-                icon: Image.asset('assets/shopping_cart.png'),
-                iconSize: 80,
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: Image.asset('assets/grocery_list.png'),
+                icon: Image.asset('assets/images/grocery_list.png'),
                 iconSize: 80,
                 onPressed: () {},
               )
