@@ -1,4 +1,7 @@
 import 'dart:ui';
+import './Register.dart';
+import './ForgotPassword.dart';
+import './Menu.dart';
 import 'package:flutter/material.dart';
 
 class MyLogin extends StatefulWidget {
@@ -22,6 +25,84 @@ class MyLogin extends StatefulWidget {
 class LoginState extends State<MyLogin> {
   final userController = TextEditingController();
   final passwordController = TextEditingController();
+  final bool userCheck = false;
+  final bool passCheck = false;
+  Future<void> invalidInput(String statement) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.cyan[50],
+          title: Text(
+              'Invalid Input',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.orange[700],
+            ),
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(
+                  statement,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text(
+                'Understood',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.orange[700],
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+  void submit(String username, String password) {
+    setState(() {
+      //Will send the username and password to the back end
+      //It will then get back a bool for the username first
+      //If username exists, then will give back a bool for the password
+      //If both are true, then go to the user's menu
+      //If even one is false, the user must re input the Username and/or Password
+      if(userCheck){
+        if(passCheck){
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Menu())
+          );
+        }
+        else if(password == ''){
+          invalidInput("No Password Received");
+        }
+        else{
+          invalidInput("Invalid Password for this Username");
+        }
+      }
+      else if(username == ''){
+        invalidInput("No Username Received");
+      }
+      else{
+        invalidInput('Username ' + username + ' does not exist');
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -98,7 +179,7 @@ class LoginState extends State<MyLogin> {
                           borderRadius: BorderRadius.circular(5),
                           child: RaisedButton(
                             onPressed: (){
-                              //Send to Username and Password to back end
+                              submit(userController.text, passwordController.text);
                             },
                             color: Colors.orange[700],
                             child: Center(
@@ -122,7 +203,10 @@ class LoginState extends State<MyLogin> {
                         width: 155,
                         child: FlatButton(
                           onPressed:(){
-                            //Send To ForgotPassword Page
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => ForgotPassword())
+                            );
                           },
                           child: Center(
                             child: Text(
@@ -141,7 +225,10 @@ class LoginState extends State<MyLogin> {
                         width: 90,
                         child: FlatButton(
                           onPressed:(){
-                            //Send To Registration Page
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => ForgotPassword())
+                            );
                           },
                           child: Center(
                             child: Text(
