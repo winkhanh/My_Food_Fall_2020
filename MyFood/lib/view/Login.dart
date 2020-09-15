@@ -227,7 +227,7 @@ class LoginState extends State<MyLogin> {
                           onPressed:(){
                             Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => ForgotPassword())
+                                MaterialPageRoute(builder: (context) => RegisterScreen())
                             );
                           },
                           child: Center(
