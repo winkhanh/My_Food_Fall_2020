@@ -1,12 +1,11 @@
 import 'dart:ui';
 import './Register.dart';
-
 import './ForgotPassword.dart';
 import './Menu.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
-  LoginScreen({Key key, this.title}) : super(key: key);
+class MyLogin extends StatefulWidget {
+  MyLogin({Key key, this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -23,7 +22,7 @@ class LoginScreen extends StatefulWidget {
   LoginState createState() => LoginState();
 }
 
-class LoginState extends State<LoginScreen> {
+class LoginState extends State<MyLogin> {
   final userController = TextEditingController();
   final passwordController = TextEditingController();
   final bool userCheck = false;
@@ -228,7 +227,7 @@ class LoginState extends State<LoginScreen> {
                           onPressed:(){
                             Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => RegisterScreen())
+                                MaterialPageRoute(builder: (context) => ForgotPassword())
                             );
                           },
                           child: Center(
