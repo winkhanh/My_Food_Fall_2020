@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './Menu.dart';
+import './MainPage.dart';
 
 
 class RegisterScreen extends StatefulWidget {
@@ -139,7 +139,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 borderRadius: BorderRadius.circular(5.0),
                 child: RaisedButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Menu()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage()));
                       //Validate code with backend to create user
                       //If validated, create user on backend and navigate to main menu
                     },
