@@ -1,7 +1,7 @@
 import 'dart:ui';
 import './Register.dart';
 import './ForgotPassword.dart';
-import './Menu.dart';
+import './MainPage.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -85,7 +85,7 @@ class LoginState extends State<LoginScreen> {
         if(passCheck){
           Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Menu())
+              MaterialPageRoute(builder: (context) => MainPage())
           );
         }
         else if(password == ''){
