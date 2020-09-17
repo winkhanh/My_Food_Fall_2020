@@ -18,7 +18,7 @@ class ForgotPasswordState extends State<ForgotPassword> {
           onPressed: () {
             Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MyLogin())
+                MaterialPageRoute(builder: (context) => LoginScreen())
             );
           },
         ),
