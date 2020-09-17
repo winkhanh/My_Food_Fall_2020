@@ -1,23 +1,17 @@
-import 'package:MyFood/components/auth_page.dart';
+import './view/Login.dart';
 import 'package:flutter/material.dart';
-import './components/home.dart';
-import './components/auth_page.dart';
+
 void main() {
-  runApp(MyApp());
+  runApp(MyFood());
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
+class MyFood extends StatelessWidget {
+  @override 
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        //visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: AuthenticationPage(title: 'Test'),
+      home: LoginScreen(),
     );
   }
 }
+
 
