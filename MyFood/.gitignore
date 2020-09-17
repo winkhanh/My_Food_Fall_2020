@@ -9,6 +9,7 @@
 .history
 .svn/
 
+
 # IntelliJ related
 *.iml
 *.ipr
@@ -39,3 +40,7 @@ app.*.symbols
 
 # Obfuscation related
 app.*.map.json
+
+#key
+google-services.json
+android/app/google-services.json
