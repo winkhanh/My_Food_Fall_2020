@@ -181,17 +181,8 @@ class LoginState extends State<LoginScreen> {
                         child: Material(
                           borderRadius: BorderRadius.circular(5),
                           child: RaisedButton(
-                            onPressed: () async{
-                              await Firebase.initializeApp();
-                              try{
-                                UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: userController.text, password: passwordController.text);
-                              } on FirebaseAuthException catch(e){
-                                if(e.code == 'user-not-found'){
-                                      print('Email does not exist.');
-                                } else if (e.code == 'wrong-password') {
-                                      print('Incorrect Password.');
-                                }
-                              }
+                            onPressed: () {
+                              submit(userController.text, passwordController.text);
                             },
                             color: Colors.orange[700],
                             child: Center(
