@@ -1,4 +1,7 @@
 import 'dart:ui';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 import './Register.dart';
 import './ForgotPassword.dart';
 import './MainPage.dart';
@@ -178,7 +181,7 @@ class LoginState extends State<LoginScreen> {
                         child: Material(
                           borderRadius: BorderRadius.circular(5),
                           child: RaisedButton(
-                            onPressed: (){
+                            onPressed: () {
                               submit(userController.text, passwordController.text);
                             },
                             color: Colors.orange[700],
