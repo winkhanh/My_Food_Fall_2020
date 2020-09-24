@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import './MainPage.dart';
 import './Login.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -90,6 +89,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   bottom: 20.0,
                 ),
                 child: TextFormField(
+                    obscureText: true,
                     controller: passwordTextController,
                     textAlign: TextAlign.start,
                     style: TextStyle(fontSize: 16.0, color: Colors.black),
@@ -115,6 +115,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   bottom: 20.0,
                 ),
                 child: TextFormField(
+                    obscureText: true,
                     controller: confirmPasswordTextController,
                     textAlign: TextAlign.start,
                     style: TextStyle(fontSize: 16.0, color: Colors.black),
