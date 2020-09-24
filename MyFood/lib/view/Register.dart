@@ -90,6 +90,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   bottom: 20.0,
                 ),
                 child: TextFormField(
+                    obscureText: true,
                     controller: passwordTextController,
                     textAlign: TextAlign.start,
                     style: TextStyle(fontSize: 16.0, color: Colors.black),
@@ -115,6 +116,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   bottom: 20.0,
                 ),
                 child: TextFormField(
+                    obscureText: true,
                     controller: confirmPasswordTextController,
                     textAlign: TextAlign.start,
                     style: TextStyle(fontSize: 16.0, color: Colors.black),
@@ -144,7 +146,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       await Firebase.initializeApp();
                       try{
                         UserCredential user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailTextController.text , password: passwordTextController.text);
-                        
                       }
                       on FirebaseAuthException catch(e){
                         if(e.code == 'weak-password'){
