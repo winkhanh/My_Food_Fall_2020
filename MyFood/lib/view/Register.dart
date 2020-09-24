@@ -150,7 +150,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         if(user != null){
                           Navigator.push(
                             context, 
-                            MaterialPageRoute(builder: (context) => LoginScreen()),
+                            MaterialPageRoute(builder: (context) => MainPage()),
                           );
                           
                         }
