@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import './MainPage.dart';
-
+import './Login.dart';
 
 class RegisterScreen extends StatefulWidget {
   RegisterScreen({Key key}) :
@@ -20,7 +19,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final passwordTextController = TextEditingController();
   final confirmPasswordTextController = TextEditingController();
 
-  @override
+  @override 
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.cyan[50],
@@ -90,6 +89,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   bottom: 20.0,
                 ),
                 child: TextFormField(
+                    obscureText: true,
                     controller: passwordTextController,
                     textAlign: TextAlign.start,
                     style: TextStyle(fontSize: 16.0, color: Colors.black),
@@ -115,6 +115,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   bottom: 20.0,
                 ),
                 child: TextFormField(
+                    obscureText: true,
                     controller: confirmPasswordTextController,
                     textAlign: TextAlign.start,
                     style: TextStyle(fontSize: 16.0, color: Colors.black),
@@ -143,8 +144,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     onPressed: () async{
                       await Firebase.initializeApp();
                       try{
-                        UserCredential user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailTextController.text , password: passwordTextController.text);
-                        
+                        UserCredential res = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailTextController.text.trim() , password: passwordTextController.text.trim());
+                        User user = res.user;
+                        if(user != null){
+                          Navigator.push(
+                            context, 
+                            MaterialPageRoute(builder: (context) => LoginScreen()),
+                          );
+                          
+                        }
                       }
                       on FirebaseAuthException catch(e){
                         if(e.code == 'weak-password'){
