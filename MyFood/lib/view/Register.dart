@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import './Login.dart';
+import 'package:MyFoodLogin/theme/approutes.dart';
 
 class RegisterScreen extends StatefulWidget {
   RegisterScreen({Key key}) :
@@ -144,15 +144,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     onPressed: () async{
                       await Firebase.initializeApp();
                       try{
-                        UserCredential res = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailTextController.text.trim() , password: passwordTextController.text.trim());
-                        User user = res.user;
-                        if(user != null){
-                          Navigator.push(
-                            context, 
-                            MaterialPageRoute(builder: (context) => LoginScreen()),
-                          );
+                        UserCredential user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailTextController.text.trim() , password: passwordTextController.text.trim());
+                       
+                        // User update = FirebaseAuth.instance.currentUser;
+                        // update.updateProfile(displayName: emailTextController.text.trim());    future
+                        Navigator.of(context).pushNamed(Routes.auth_login);
                           
-                        }
+                        
                       }
                       on FirebaseAuthException catch(e){
                         if(e.code == 'weak-password'){
