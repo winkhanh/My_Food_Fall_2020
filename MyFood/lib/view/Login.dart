@@ -179,15 +179,14 @@ class LoginState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(5),
                       child: RaisedButton(
                         onPressed: () async {
+                          await Firebase.initializeApp();
                           try {
-                            UserCredential res = await FirebaseAuth.instance
+                            UserCredential user = await FirebaseAuth.instance
                                 .signInWithEmailAndPassword(
                                     email: userController.text,
                                     password: passwordController.text
-                              ); User user = res.user;
-                              if(user != null){
-                                Navigator.of(context).pushNamed(Routes.mainPage())
-                              }
+                              );
+                              Navigator.of(context).pushNamed(Routes.main_page);
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'user-not-found') {
                               print('No user found for that email.');
