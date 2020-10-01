@@ -133,7 +133,7 @@ class LoginState extends State<LoginScreen> {
                       contentPadding: EdgeInsets.all(5),
                       fillColor: Colors.white,
                       filled: true,
-                      hintText: 'Username',
+                      hintText: 'Email',
                       hintStyle: TextStyle(fontSize: 16.0, color: Colors.black),
                       border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
