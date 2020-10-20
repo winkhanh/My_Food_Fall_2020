@@ -1,5 +1,6 @@
 import 'package:MyFoodLogin/view/MainPage.dart';
 import 'package:flutter/material.dart';
+import 'package:MyFoodLogin/view/FreezerPage.dart';
 
 class FridgePage extends StatefulWidget {
   FridgePage({Key key}) : super(key: key);
@@ -52,7 +53,8 @@ class _FridgePageState extends State<FridgePage> {
           Row(mainAxisAlignment: MainAxisAlignment.start, children: [
             //Freezer Box
             InkWell(
-                onTap: () => print("Freezer pressed"),
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => FreezerPage())),
                 child: Container(
                   decoration: BoxDecoration(
                       image: DecorationImage(
@@ -150,6 +152,10 @@ class _FridgePageState extends State<FridgePage> {
                   onTap: () => print("Pantry pressed"),
                   child: Container(
                     decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/can.png'),
+                          fit: BoxFit.fill,
+                        ),
                         color: Colors.brown[300],
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
@@ -180,6 +186,10 @@ class _FridgePageState extends State<FridgePage> {
                   onTap: () => print("Perishables pressed"),
                   child: Container(
                     decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/bread.png'),
+                          fit: BoxFit.fill,
+                        ),
                         color: Colors.orange[300],
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
@@ -206,6 +216,10 @@ class _FridgePageState extends State<FridgePage> {
                   onTap: () => print("Dairy pressed"),
                   child: Container(
                     decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/milk.png'),
+                          fit: BoxFit.fill,
+                        ),
                         color: Colors.grey[300],
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
