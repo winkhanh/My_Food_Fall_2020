@@ -1,4 +1,8 @@
 import 'dart:ui';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:MyFoodLogin/theme/approutes.dart';
+
 import './Register.dart';
 import './ForgotPassword.dart';
 import './MainPage.dart';
@@ -27,6 +31,7 @@ class LoginState extends State<LoginScreen> {
   final passwordController = TextEditingController();
   final bool userCheck = false;
   final bool passCheck = false;
+
   Future<void> invalidInput(String statement) async {
     return showDialog<void>(
       context: context,
@@ -128,7 +133,7 @@ class LoginState extends State<LoginScreen> {
                       contentPadding: EdgeInsets.all(5),
                       fillColor: Colors.white,
                       filled: true,
-                      hintText: 'Username',
+                      hintText: 'Email',
                       hintStyle: TextStyle(fontSize: 16.0, color: Colors.black),
                       border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
@@ -173,8 +178,21 @@ class LoginState extends State<LoginScreen> {
                     child: Material(
                       borderRadius: BorderRadius.circular(5),
                       child: RaisedButton(
-                        onPressed: () {
-                          submit(userController.text, passwordController.text);
+                        onPressed: () async {
+                          await Firebase.initializeApp();
+                          try {
+                            UserCredential user = await FirebaseAuth.instance
+                                .signInWithEmailAndPassword(
+                                    email: userController.text,
+                                    password: passwordController.text);
+                            Navigator.of(context).pushNamed(Routes.main_page);
+                          } on FirebaseAuthException catch (e) {
+                            if (e.code == 'user-not-found') {
+                              print('No user found for that email.');
+                            } else if (e.code == 'wrong-password') {
+                              print('Wrong password provided for that user.');
+                            }
+                          }
                         },
                         color: Colors.orange[700],
                         child: Center(

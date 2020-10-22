@@ -12,6 +12,7 @@ class _FreezerPageState extends State<FreezerPage> {
   TextEditingController _textController = TextEditingController();
 
   List<String> foodItem = <String>[
+    /*
     'Ice Cream',
     'Hot Pockets',
     'Ice Pops',
@@ -26,9 +27,9 @@ class _FreezerPageState extends State<FreezerPage> {
     'Frozen Chicken',
     'frozen blueberries',
     'fudge pops',
-    'Mixed Vegtables',
+    'Mixed Vegtables',*/
   ];
-  List<int> amount = <int>[2, 0, 10, 6, 52, 4, 0, 2, 1, 2, 3, 4, 5, 6, 7];
+  List<int> amount = <int>[/*2, 0, 10, 6, 52, 4, 0, 2, 1, 2, 3, 4, 5, 6, 7*/];
 
   onSubmit() {
     setState(() {
@@ -134,6 +135,7 @@ class _FreezerPageState extends State<FreezerPage> {
                         )),
                   ],
                 ),
+                //List of items
                 Row(
                   children: [
                     Container(
@@ -148,11 +150,25 @@ class _FreezerPageState extends State<FreezerPage> {
                                     height: 50,
                                     margin: EdgeInsets.all(2),
                                     color: Colors.white,
-                                    child: Center(
-                                        child: Text(
-                                      '${foodItem[index]} ${amount[index]}',
-                                      style: TextStyle(fontSize: 18),
-                                    )),
+                                    child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                              padding:
+                                                  EdgeInsets.only(left: 10),
+                                              child: Text(
+                                                '${foodItem[index]}',
+                                                style: TextStyle(fontSize: 18),
+                                              )),
+                                          Container(
+                                              padding:
+                                                  EdgeInsets.only(right: 10),
+                                              child: Text(
+                                                '${amount[index]}',
+                                                style: TextStyle(fontSize: 18),
+                                              )),
+                                        ]),
                                   );
                                 }),
                             width: 353,

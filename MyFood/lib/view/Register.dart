@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import './Login.dart';
+import 'package:MyFoodLogin/theme/approutes.dart';
+import 'package:MyFoodLogin/net/firestore.dart';
 
 class RegisterScreen extends StatefulWidget {
   RegisterScreen({Key key}) : super(key: key);
@@ -86,6 +87,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   bottom: 20.0,
                 ),
                 child: TextFormField(
+                    obscureText: true,
                     controller: passwordTextController,
                     textAlign: TextAlign.start,
                     style: TextStyle(fontSize: 16.0, color: Colors.black),
@@ -111,6 +113,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   bottom: 20.0,
                 ),
                 child: TextFormField(
+                    obscureText: true,
                     controller: confirmPasswordTextController,
                     textAlign: TextAlign.start,
                     style: TextStyle(fontSize: 16.0, color: Colors.black),
@@ -141,8 +144,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       try {
                         UserCredential user = await FirebaseAuth.instance
                             .createUserWithEmailAndPassword(
-                                email: emailTextController.text,
-                                password: passwordTextController.text);
+                                email: emailTextController.text.trim(),
+                                password: passwordTextController.text.trim());
+
+                        User update = FirebaseAuth.instance.currentUser;
+                        update.updateProfile(
+                            displayName: emailTextController.text);
+
+                        userCreate(emailTextController.text);
+
+                        Navigator.of(context).pushNamed(Routes.auth_login);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'weak-password') {
                           print('Password too weak');
