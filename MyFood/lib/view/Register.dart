@@ -2,24 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:MyFoodLogin/theme/approutes.dart';
+import 'package:MyFoodLogin/net/firestore.dart';
 
 class RegisterScreen extends StatefulWidget {
-  RegisterScreen({Key key}) :
-  super(key: key);
+  RegisterScreen({Key key}) : super(key: key);
 
-  @override  
+  @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-
 class _RegisterScreenState extends State<RegisterScreen> {
-
   final nameTextController = TextEditingController();
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
   final confirmPasswordTextController = TextEditingController();
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.cyan[50],
@@ -64,9 +62,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 width: 300.0,
                 height: 40.0,
                 child: TextFormField(
-                  controller: emailTextController,
-                  textAlign: TextAlign.start,
-                  style: TextStyle(fontSize: 16.0, color: Colors.black),
+                    controller: emailTextController,
+                    textAlign: TextAlign.start,
+                    style: TextStyle(fontSize: 16.0, color: Colors.black),
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(5),
                       fillColor: Colors.white,
@@ -141,24 +139,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Material(
                 borderRadius: BorderRadius.circular(5.0),
                 child: RaisedButton(
-                    onPressed: () async{
+                    onPressed: () async {
                       await Firebase.initializeApp();
-                      try{
-                        UserCredential user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailTextController.text.trim() , password: passwordTextController.text.trim());
-                       
-                        // User update = FirebaseAuth.instance.currentUser;
-                        // update.updateProfile(displayName: emailTextController.text.trim());    future
+                      try {
+                        UserCredential user = await FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
+                                email: emailTextController.text.trim(),
+                                password: passwordTextController.text.trim());
+
+                        User update = FirebaseAuth.instance.currentUser;
+                        update.updateProfile(displayName: emailTextController.text);
+
+                        userCreate(emailTextController.text);
+
                         Navigator.of(context).pushNamed(Routes.auth_login);
-                          
-                        
-                      }
-                      on FirebaseAuthException catch(e){
-                        if(e.code == 'weak-password'){
+
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'weak-password') {
                           print('Password too weak');
-                        } else if(e.code == 'email-already-in-use'){
+                        } else if (e.code == 'email-already-in-use') {
                           print('The account already exists for that email.');
                         }
-                      }catch(e){
+                      } catch (e) {
                         print(e.toString());
                       }
                       //Validate code with backend to create user
