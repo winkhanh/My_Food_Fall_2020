@@ -1,5 +1,7 @@
 import 'package:MyFoodLogin/view/FridgePage.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class FreezerPage extends StatefulWidget {
   FreezerPage({Key key}) : super(key: key);
@@ -9,32 +11,23 @@ class FreezerPage extends StatefulWidget {
 }
 
 class _FreezerPageState extends State<FreezerPage> {
+  //FirebaseFirestore db = FirebaseFirestore.getInstance();
   TextEditingController _textController = TextEditingController();
 
-  List<String> foodItem = <String>[
-    /*
-    'Ice Cream',
-    'Hot Pockets',
-    'Ice Pops',
-    'green peas',
-    'Frozen Pizza',
-    'TV dinner',
-    'Stouffers',
-    'Hungry Man',
-    'Chicken Nuggets',
-    'Lasagna',
-    'Kids Cuisine',
-    'Frozen Chicken',
-    'frozen blueberries',
-    'fudge pops',
-    'Mixed Vegtables',*/
-  ];
   List<int> amount = <int>[/*2, 0, 10, 6, 52, 4, 0, 2, 1, 2, 3, 4, 5, 6, 7*/];
+  List<String> foodItem = <String>[];
 
   onSubmit() {
     setState(() {
-      foodItem.add(_textController.text);
-      amount.add(0);
+      FirebaseFirestore.instance
+          .collection("Users")
+          .doc("Username02")
+          .collection("Drawer")
+          .doc(_textController.text)
+          .set({
+        "Name": _textController.text,
+        "Type": "Freezer",
+      });
     });
   }
 
@@ -146,30 +139,44 @@ class _FreezerPageState extends State<FreezerPage> {
                                 padding: const EdgeInsets.all(8),
                                 itemCount: foodItem.length,
                                 itemBuilder: (BuildContext context, int index) {
-                                  return Container(
-                                    height: 50,
-                                    margin: EdgeInsets.all(2),
-                                    color: Colors.white,
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                              padding:
-                                                  EdgeInsets.only(left: 10),
-                                              child: Text(
-                                                '${foodItem[index]}',
-                                                style: TextStyle(fontSize: 18),
-                                              )),
-                                          Container(
-                                              padding:
-                                                  EdgeInsets.only(right: 10),
-                                              child: Text(
-                                                '${amount[index]}',
-                                                style: TextStyle(fontSize: 18),
-                                              )),
-                                        ]),
-                                  );
+                                  return Dismissible(
+                                      key: Key(foodItem[index]),
+                                      onDismissed: (direction) {
+                                        foodItem.removeAt(index);
+                                        amount.removeAt(index);
+                                      },
+                                      child: Container(
+                                        height: 50,
+                                        margin: EdgeInsets.all(2),
+                                        color: Colors.white,
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                  child: SizedBox(
+                                                      child: StreamBuilder(
+                                                stream: FirebaseFirestore
+                                                    .instance
+                                                    .collection("Users")
+                                                    .doc("Username02")
+                                                    .collection("Drawer")
+                                                    .snapshots(),
+                                                builder: (BuildContext context,
+                                                    AsyncSnapshot<QuerySnapshot>
+                                                        snapshot) {
+                                                  return ListView(
+                                                    children: snapshot.data.docs
+                                                        .map((document) {
+                                                      return Container(
+                                                          child: Text(document[
+                                                              "Name"]));
+                                                    }).toList(),
+                                                  );
+                                                },
+                                              )))
+                                            ]),
+                                      ));
                                 }),
                             width: 353,
                             height: 481,
