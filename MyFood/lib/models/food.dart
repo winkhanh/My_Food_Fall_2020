@@ -4,11 +4,12 @@ class Food{
   int count;
   bool isSaved;
   String id;
-  Food(String name){
+  String drawerName;
+  Food(String name, String drawerName){
     this.name=name;
     this.count=1;
     this.isSaved=false;
-    
+    this.drawerName=drawerName;
   }
 
   void increaseCount(){
