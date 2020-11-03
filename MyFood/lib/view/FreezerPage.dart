@@ -10,7 +10,7 @@ class FreezerPage extends StatefulWidget {
 
 class _FreezerPageState extends State<FreezerPage> {
   TextEditingController _textController = TextEditingController();
-  FridgeContainer foodItems=new FridgeContainer();
+  FridgeContainer foodItems=new FridgeContainer.withName("Freezer");
   List<String> foodItem = <String>[
     /*
     'Ice Cream',

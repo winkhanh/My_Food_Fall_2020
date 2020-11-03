@@ -3,9 +3,16 @@ import 'package:MyFoodLogin/models/food.dart';
 class FridgeContainer{
   Map<String, int> mapIndex;
   List<Food> listOfFood;
+  String name;
   FridgeContainer(){
     mapIndex = new Map<String,int>();
     listOfFood = new List<Food>();
+    name="default";
+  }
+  FridgeContainer.withName(String name){
+    mapIndex = new Map<String,int>();
+    listOfFood = new List<Food>();
+    this.name=name;
   }
   void add(String food){
     print(food);
@@ -15,7 +22,7 @@ class FridgeContainer{
       print("YES");
     }else{
       mapIndex[food]=this.getSize();
-      listOfFood.add(new Food(food));
+      listOfFood.add(new Food(food,this.name));
       listOfFood[this.getSize()-1].save();
       print("NO");
     }
