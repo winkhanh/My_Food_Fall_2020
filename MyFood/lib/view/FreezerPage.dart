@@ -1,6 +1,6 @@
 import 'package:MyFoodLogin/view/FridgePage.dart';
 import 'package:flutter/material.dart';
-
+import 'package:MyFoodLogin/models/container.dart';
 class FreezerPage extends StatefulWidget {
   FreezerPage({Key key}) : super(key: key);
 
@@ -10,7 +10,7 @@ class FreezerPage extends StatefulWidget {
 
 class _FreezerPageState extends State<FreezerPage> {
   TextEditingController _textController = TextEditingController();
-
+  FridgeContainer foodItems=new FridgeContainer.withName("Freezer");
   List<String> foodItem = <String>[
     /*
     'Ice Cream',
@@ -34,6 +34,7 @@ class _FreezerPageState extends State<FreezerPage> {
   onSubmit() {
     setState(() {
       foodItem.add(_textController.text);
+      foodItems.add(_textController.text);
       amount.add(0);
     });
   }
@@ -144,7 +145,7 @@ class _FreezerPageState extends State<FreezerPage> {
                           child: Container(
                             child: ListView.builder(
                                 padding: const EdgeInsets.all(8),
-                                itemCount: foodItem.length,
+                                itemCount: foodItems.getSize(),
                                 itemBuilder: (BuildContext context, int index) {
                                   return Container(
                                     height: 50,
@@ -158,14 +159,14 @@ class _FreezerPageState extends State<FreezerPage> {
                                               padding:
                                                   EdgeInsets.only(left: 10),
                                               child: Text(
-                                                '${foodItem[index]}',
+                                                '${foodItems[index].getName()}',
                                                 style: TextStyle(fontSize: 18),
                                               )),
                                           Container(
                                               padding:
                                                   EdgeInsets.only(right: 10),
                                               child: Text(
-                                                '${amount[index]}',
+                                                '${foodItems[index].getCount()}',
                                                 style: TextStyle(fontSize: 18),
                                               )),
                                         ]),
