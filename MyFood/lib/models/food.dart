@@ -28,12 +28,12 @@ class Food{
   }
   void save(){
     if (this.id=="")
-    addDoc('Food',this.toJson()).then((value){
+    addDocToUser('Food',this.toJson()).then((value){
       this.id=value;
       print(this.id);
     });
     else 
-    updateDoc('Food',this.id,this.toJson());
+    updateDocToUser('Food',this.id,this.toJson());
     isSaved=true;
   }
 }
