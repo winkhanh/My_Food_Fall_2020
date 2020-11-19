@@ -4,14 +4,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class PerishablesPage extends StatefulWidget {
-  PerishablesPage({Key key}) : super(key: key);
+class AllFoodPage extends StatefulWidget {
+  AllFoodPage({Key key}) : super(key: key);
 
   @override
-  _PerishablesPageState createState() => _PerishablesPageState();
+  _AllFoodPageState createState() => _AllFoodPageState();
 }
 
-class _PerishablesPageState extends State<PerishablesPage> {
+class _AllFoodPageState extends State<AllFoodPage> {
   //FirebaseFirestore db = FirebaseFirestore.getInstance();
   FirebaseAuth auth = FirebaseAuth.instance;
   TextEditingController _textController = TextEditingController();
@@ -41,7 +41,7 @@ class _PerishablesPageState extends State<PerishablesPage> {
           .doc(_textController.text)
           .set({
         "Name": _textController.text,
-        "Type": "Perishables",
+        
       });
     });
   }
