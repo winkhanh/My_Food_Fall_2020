@@ -31,6 +31,7 @@ class LoginState extends State<LoginScreen> {
   final passwordController = TextEditingController();
   final bool userCheck = false;
   final bool passCheck = false;
+  var uid;
 
   Future<void> invalidInput(String statement) async {
     return showDialog<void>(
@@ -184,16 +185,15 @@ class LoginState extends State<LoginScreen> {
                             UserCredential user = await FirebaseAuth.instance
                                 .signInWithEmailAndPassword(
                                     email: userController.text,
-                                    password: passwordController.text
-                              );
-                              Navigator.of(context).pushNamed(Routes.main_page);
+                                    password: passwordController.text);
+                            final uid = user.user.uid;
+                            Navigator.of(context).pushNamed(Routes.main_page);
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'user-not-found') {
                               print('No user found for that email.');
                             } else if (e.code == 'wrong-password') {
                               print('Wrong password provided for that user.');
                             }
-                            
                           }
                         },
                         color: Colors.orange[700],
