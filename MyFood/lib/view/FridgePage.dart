@@ -181,10 +181,10 @@ class _FridgePageState extends State<FridgePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              //Perishables Box
+              //All Food Box
               InkWell(
                   onTap: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => PerishablesPage())),
+                    MaterialPageRoute(builder: (context) => AllFoodPage())),
                   child: Container(
                     decoration: BoxDecoration(
                         image: DecorationImage(
@@ -203,7 +203,7 @@ class _FridgePageState extends State<FridgePage> {
                     height: 164,
                     child: Center(
                         child: Text(
-                      "Perishables",
+                      "AllFood",
                       textAlign: TextAlign.center,
                       style: new TextStyle(
                           fontSize: 28,
