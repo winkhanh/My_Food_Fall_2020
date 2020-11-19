@@ -1,6 +1,7 @@
+import 'package:MyFoodLogin/view/MainPage.dart';
 import 'package:flutter/material.dart';
-import './FreezerPage.dart';
-
+import 'package:MyFoodLogin/view/FreezerPage.dart';
+import 'package:MyFoodLogin/view/PerishablesPage.dart';
 class FridgePage extends StatefulWidget {
   FridgePage({Key key}) : super(key: key);
 
@@ -25,7 +26,8 @@ class _FridgePageState extends State<FridgePage> {
             children: [
               //Back button
               InkWell(
-                  onTap: () => Navigator.pop(context),
+                  onTap: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MainPage())),
                   child: Container(
                       decoration: BoxDecoration(
                           color: Colors.black,
@@ -150,6 +152,10 @@ class _FridgePageState extends State<FridgePage> {
                   onTap: () => print("Pantry pressed"),
                   child: Container(
                     decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/can.png'),
+                          fit: BoxFit.fill,
+                        ),
                         color: Colors.brown[300],
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
@@ -177,9 +183,14 @@ class _FridgePageState extends State<FridgePage> {
             children: [
               //Perishables Box
               InkWell(
-                  onTap: () => print("Perishables pressed"),
+                  onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => PerishablesPage())),
                   child: Container(
                     decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/bread.png'),
+                          fit: BoxFit.fill,
+                        ),
                         color: Colors.orange[300],
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
@@ -206,6 +217,10 @@ class _FridgePageState extends State<FridgePage> {
                   onTap: () => print("Dairy pressed"),
                   child: Container(
                     decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/milk.png'),
+                          fit: BoxFit.fill,
+                        ),
                         color: Colors.grey[300],
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),

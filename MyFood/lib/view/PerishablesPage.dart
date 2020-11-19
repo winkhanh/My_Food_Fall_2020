@@ -4,14 +4,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class FreezerPage extends StatefulWidget {
-  FreezerPage({Key key}) : super(key: key);
+class PerishablesPage extends StatefulWidget {
+  PerishablesPage({Key key}) : super(key: key);
 
   @override
-  _FreezerPageState createState() => _FreezerPageState();
+  _PerishablesPageState createState() => _PerishablesPageState();
 }
 
-class _FreezerPageState extends State<FreezerPage> {
+class _PerishablesPageState extends State<PerishablesPage> {
   //FirebaseFirestore db = FirebaseFirestore.getInstance();
   FirebaseAuth auth = FirebaseAuth.instance;
   TextEditingController _textController = TextEditingController();
@@ -41,7 +41,7 @@ class _FreezerPageState extends State<FreezerPage> {
           .doc(_textController.text)
           .set({
         "Name": _textController.text,
-        "Type": "Freezer",
+        "Type": "Perishables",
       });
     });
   }
